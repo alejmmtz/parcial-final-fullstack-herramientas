@@ -1,5 +1,5 @@
 import { Transform } from "class-transformer";
-import { IsInt, IsNotEmpty, IsString, MaxLength, Min } from "class-validator";
+import { IsInt, IsNotEmpty, IsString, Max, MaxLength, Min } from "class-validator";
 
 export class CreateLoanRequestDto {
   @Transform(({ value }) => typeof value === "string" ? value.trim() : value)
@@ -10,6 +10,7 @@ export class CreateLoanRequestDto {
 
   @IsInt()
   @Min(1)
+
   days!: number;
 
   @IsInt()
