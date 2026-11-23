@@ -17,7 +17,7 @@ export default async function NewLoanRequestPage() {
 
   return (
     <main>
-      <h1>New loan request</h1>
+      <h1 className="text-4xl font-bold tracking-tight">New loan request</h1>
       <Link href="/loan-requests">Back to requests</Link>
       <form className="panel fields" action={createLoanRequest}>
         <label>Purpose<input name="purpose" maxLength={120} required /></label>

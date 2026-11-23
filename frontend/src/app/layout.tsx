@@ -14,8 +14,8 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <header>
           <Link className="brand" href="/">Tool Lab</Link>
           <nav aria-label="Main navigation">
-            <Link href="/loan-requests">Loan requests</Link>
-            <Link href="/login">Sign in</Link>
+            <Link className="font-medium tracking-tight" href="/loan-requests">Loan requests</Link>
+            <Link className="font-medium tracking-tight" href="/login">Sign in</Link>
           </nav>
         </header>
         {children}

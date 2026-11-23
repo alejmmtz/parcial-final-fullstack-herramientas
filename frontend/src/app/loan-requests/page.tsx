@@ -28,10 +28,10 @@ export default async function LoanRequestsPage({ searchParams }: LoanRequestsPag
 
   return (
     <main>
-      <h1 className="text-4xl py-4 font-bold text-[#11685d]">Loan Requests</h1>
+      <h1 className="text-4xl py-4 font-bold text-[#11685d] tracking-tight">Loan Requests</h1>
       <Link className="button" href="/loan-requests/new">New request</Link>
 
-      <h3 className="text-md mt-8 mb-4">Filtrar por herramienta</h3>
+      <h3 className="text-lg font-medium mt-8 mb-4">Filtrar por herramienta</h3>
 
 
       {tools && tools.length > 0 && (
