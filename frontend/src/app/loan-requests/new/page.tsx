@@ -43,7 +43,7 @@ export default async function NewLoanRequestPage({ searchParams }: NewLoanReques
   return (
     <main>
       <h1 className="text-4xl font-bold tracking-tight">New loan request</h1>
-      <Link href="/loan-requests">Back to requests</Link>
+      <Link className="font-semibold text-lg underline" href="/loan-requests">Back to requests</Link>
       <form className="panel fields" action={createLoanRequest}>
         <label>Purpose<input name="purpose" maxLength={120} required /></label>
         <label>Days<input name="days" type="number" min={1} step={1} required /></label>
