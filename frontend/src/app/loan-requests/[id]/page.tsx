@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { apiFetch } from "../../../lib/api";
-import LoanRequestCard from "../../components/LoanRequestCard";
+
+import { picsumUrl } from "../../../lib/api-url";
 
 type ReceiptPageProps = { params: Promise<{ id: string }> };
 
@@ -22,13 +23,13 @@ export default async function ReceiptPage({ params }: ReceiptPageProps) {
   return (
     <main>
       <h1 className="text-4xl font-bold tracking-tight">Loan receipt</h1>
-      <Link href="/loan-requests">Back to requests</Link>
+      <Link className="font-semibold text-lg underline" href="/loan-requests">Back to requests</Link>
       <section >
         <article className="panel ">
           <h2 className="text-lg font-semibold tracking-tight">Pedido #{loanRequest.id}</h2>
           <h2 className="text-2xl font-semibold mb-4 mt-2 tracking-tight">{loanRequest.purpose}</h2>
           <p className="text-md font-normal ">Solicita un <span className="font-semibold">{loanRequest.tool.name}</span> por {loanRequest.days} días.</p>
-
+          <img className="mt-4 rounded-lg hover:scale-95 transition-all" src={picsumUrl} alt="" width={800} height={400} />
         </article>
       </section>
     </main>

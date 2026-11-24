@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { apiFetch } from "../../../lib/api";
 import type { Tool } from "../../../lib/loan-types";
+import { redirect } from "next/navigation";
 
 async function createLoanRequest(formData: FormData) {
   "use server";
@@ -8,12 +9,36 @@ async function createLoanRequest(formData: FormData) {
   // TODO FRONT-B: leer el formulario, convertir los números y enviar el POST con apiFetch.
   // TODO FRONT-B: si se crea la solicitud, abrir el comprobante con el ID recibido.
   // Si la creación se rechaza, no redirigir a un comprobante.
+
+  const response = await apiFetch("/loan-requests", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      purpose: String(formData.get("purpose") ?? "").trim(),
+      days: Number(formData.get("days")),
+      toolId: Number(formData.get("toolId")),
+    }),
+  });
+
+  if (response?.status === 409) redirect("/loan-requests/new?error=conflict");
+
+  if (response?.status === 201) {
+    const loanRequest = await response.json().catch(() => null);
+    const id = loanRequest?.id;
+
+    redirect(`/loan-requests/${id}`);
+  }
   void formData;
 }
 
-export default async function NewLoanRequestPage() {
+type NewLoanRequestProps = { searchParams: Promise<{ error?: string }> };
+
+
+export default async function NewLoanRequestPage({ searchParams }: NewLoanRequestProps) {
   const response = await apiFetch("/tools");
   const tools: Tool[] = response.ok ? await response.json() : [];
+
+  const { error } = await searchParams;
 
   return (
     <main>
@@ -32,6 +57,8 @@ export default async function NewLoanRequestPage() {
           </select>
         </label>
         <button type="submit">Send request</button>
+        {error === "conflict" && <p className=" text-red-800 font-medium">Estas intentando hacer un prestamo de un ítem que no acepta más de los días que seleccionaste</p>}
+
       </form>
     </main>
   );
