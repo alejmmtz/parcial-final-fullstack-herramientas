@@ -27,7 +27,7 @@ export default async function LoanRequestsPage({ searchParams }: LoanRequestsPag
   // TODO FRONT-A: mostrar las solicitudes y sus enlaces al comprobante correspondiente.
 
   return (
-    <main>
+    <main >
       <h1 className="text-4xl py-4 font-bold text-[#11685d] tracking-tight">Loan Requests</h1>
       <Link className="button" href="/loan-requests/new">New request</Link>
 
@@ -36,10 +36,10 @@ export default async function LoanRequestsPage({ searchParams }: LoanRequestsPag
 
       {tools && tools.length > 0 && (
         <div className="flex space-x-2" >
-          <Link className="button" href="/loan-requests/">All Tools</Link>
+          <Link href="/loan-requests/"> <p className={`py-2 px-4  border border-gray-400 rounded-lg transition-all duration-500 ${!toolId ? "bg-[#11685d] text-white" : " text-black"}`}>All Tools</p></Link>
           {
             tools.map(({ id, name }) => (
-              <Link className="button" key={id} href={`/loan-requests?toolId=${id}`}>{name}</Link>
+              <Link key={id} href={`/loan-requests?toolId=${id}`}><p className={`py-2 px-4 border border-gray-400 rounded-lg  transition-all duration-500 ${Number(toolId) == id ? "bg-[#11685d] text-white border-gray-0" : " text-black"}`}>{name}</p></Link>
             ))
           }
         </div>

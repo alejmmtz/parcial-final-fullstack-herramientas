@@ -29,7 +29,7 @@ export default async function ReceiptPage({ params }: ReceiptPageProps) {
           <h2 className="text-lg font-semibold tracking-tight">Pedido #{loanRequest.id}</h2>
           <h2 className="text-2xl font-semibold mb-4 mt-2 tracking-tight">{loanRequest.purpose}</h2>
           <p className="text-md font-normal ">Solicita un <span className="font-semibold">{loanRequest.tool.name}</span> por {loanRequest.days} días.</p>
-          <img className="mt-4 rounded-lg hover:scale-95 transition-all" src={picsumUrl} alt="" width={800} height={400} />
+          <img className="mt-4 rounded-lg  transition-all" src={picsumUrl} alt="" width={800} height={400} />
         </article>
       </section>
     </main>
